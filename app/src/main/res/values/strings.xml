@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">openledger</string>
+    <string name="main_item_title">Main</string>
+    <string name="main_menu_edit_button">Edit</string>
+    <string name="menu_filter_expense">Filter</string>
+    <string name="navigation_drawer_header_title">open ledger</string>
 </resources>
