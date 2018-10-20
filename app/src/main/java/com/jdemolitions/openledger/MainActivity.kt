@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -19,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding: MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+        val navController: NavController = Navigation.findNavController(this, R.id.main_nav_host_fragment)
+
         drawerLayout = binding.drawerLayout
-        val navController = Navigation.findNavController(this, R.id.main_nav_host_fragment)
 
         setSupportActionBar(binding.toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-
         binding.navigationView.setupWithNavController(navController)
     }
 

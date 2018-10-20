@@ -4,4 +4,5 @@
     <string name="main_menu_edit_button">Edit</string>
     <string name="menu_filter_expense">Filter</string>
     <string name="navigation_drawer_header_title">open ledger</string>
+    <string name="expense_item_title">Expenses</string>
 </resources>

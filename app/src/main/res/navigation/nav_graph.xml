@@ -3,12 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/item_main_fragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/item_main_fragment"
         android:name="com.jdemolitions.openledger.ui.main.MainFragment"
-        android:label="main_fragment"
+        android:label="@string/main_item_title"
         tools:layout="@layout/main_fragment" />
+
+    <fragment
+        android:id="@+id/item_expense_fragment"
+        android:name="com.jdemolitions.openledger.ui.expense.ExpenseFragment"
+        android:label="@string/expense_item_title"
+        tools:layout="@layout/expense_fragment" />
 
 </navigation>
