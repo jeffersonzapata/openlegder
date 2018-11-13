@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="hasExpenses"
+            type="java.lang.Boolean" />
+
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/expense_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{hasExpenses ? View.VISIBLE : View.GONE }"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem = "@layout/expense_item_list_fragment"
+            />
+
+        <TextView
+            android:id="@+id/empty_expense_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/empty_expense_list"
+            android:textSize="24sp"
+            android:visibility="@{hasExpenses ? View.GONE : View.VISIBLE}"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingAddExpenseButton"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:tint="@android:color/white"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/ic_add_white" />
+
+    </FrameLayout>
+
+</layout>

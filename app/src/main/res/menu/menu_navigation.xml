@@ -7,7 +7,7 @@
         android:title="@string/main_item_title"/>
 
     <item
-        android:id="@+id/item_expense_fragment"
+        android:id="@+id/item_expense_list_fragment"
         android:title="@string/expense_item_title"/>
 
 </menu>

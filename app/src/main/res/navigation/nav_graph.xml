@@ -12,9 +12,25 @@
         tools:layout="@layout/main_fragment" />
 
     <fragment
-        android:id="@+id/item_expense_fragment"
-        android:name="com.jdemolitions.openledger.ui.expense.ExpenseFragment"
+        android:id="@+id/item_expense_list_fragment"
+        android:name="com.jdemolitions.openledger.ui.expense.ExpenseListFragment"
         android:label="@string/expense_item_title"
-        tools:layout="@layout/expense_fragment" />
+        tools:layout="@layout/expense_list_fragment">
+
+        <action
+            android:id="@+id/item_expense_fragment_to_item_expense_input_fragment"
+            app:destination="@id/item_expense_input_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/item_expense_input_fragment"
+        android:name="com.jdemolitions.openledger.ui.expense.ExpenseInputFragment"
+        android:label="@string/expense_item_title"
+        tools:layout="@layout/expense_input_fragment" />
 
 </navigation>

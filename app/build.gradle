@@ -49,6 +49,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
 
+    implementation "io.arrow-kt:arrow-core:$rootProject.arrowVersion"
+    implementation "io.arrow-kt:arrow-syntax:$rootProject.arrowVersion"
+    implementation "io.arrow-kt:arrow-typeclasses:$rootProject.arrowVersion"
+    implementation "io.arrow-kt:arrow-data:$rootProject.arrowVersion"
+    implementation "io.arrow-kt:arrow-instances-core:$rootProject.arrowVersion"
+    implementation "io.arrow-kt:arrow-instances-data:$rootProject.arrowVersion"
 
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"

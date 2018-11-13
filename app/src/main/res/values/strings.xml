@@ -5,4 +5,11 @@
     <string name="menu_filter_expense">Filter</string>
     <string name="navigation_drawer_header_title">open ledger</string>
     <string name="expense_item_title">Expenses</string>
+    <string name="empty_expense_list">Add expenses</string>
+
+
+    <string name="error_message_mandatory">Mandatory</string>
+    <string name="error_message_max_length_exceeded">Max Length Exceeded</string>
+    <string name="error_message_invalid_date">Invalid Date</string>
+    <string name="error_message_invalid_number">Invalid Number</string>
 </resources>
