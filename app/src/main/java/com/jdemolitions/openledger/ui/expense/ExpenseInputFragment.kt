@@ -14,8 +14,8 @@ import arrow.data.NonEmptyList
 import com.jdemolitions.openledger.APP_TAG
 import com.jdemolitions.openledger.OpenLedgerRepository
 import com.jdemolitions.openledger.databinding.ExpenseInputFragmentBinding
-import com.jdemolitions.openledger.infrastructure.hideKeyboard
-import com.jdemolitions.openledger.infrastructure.transformValidationError
+import com.jdemolitions.openledger.infrastructure.ViewExtension.hideKeyboard
+import com.jdemolitions.openledger.infrastructure.FragmentExtension.transformValidationError
 import com.jdemolitions.openledger.ui.FieldError
 
 val TAG = "$APP_TAG-ExpenseInputFragment"
