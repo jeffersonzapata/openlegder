@@ -12,10 +12,10 @@
 #   public *;
 #}
 
-# Uncomment this to preserve the line validateNumber information for
+# Uncomment this to preserve the line parseNumber information for
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable
 
-# If you keep the line validateNumber information, uncomment this to
+# If you keep the line parseNumber information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
