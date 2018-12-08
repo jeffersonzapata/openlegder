@@ -6,6 +6,8 @@ import arrow.data.invalid
 import arrow.data.valid
 import com.jdemolitions.openledger.APP_TAG
 import com.jdemolitions.openledger.infrastructure.StringExtension.toNumber
+import com.jdemolitions.openledger.infrastructure.StringExtension.toLocalDate
+import java.time.LocalDate
 
 sealed class FieldError {
     data class Amount(val value: ValidationError) : FieldError()
@@ -14,7 +16,7 @@ sealed class FieldError {
 }
 
 sealed class ValidationError {
-    object EmptyString : ValidationError()
+    object MandatoryField : ValidationError()
     object MaxLength : ValidationError()
     object InvalidNumber : ValidationError()
     object InvalidDate : ValidationError()
@@ -24,10 +26,10 @@ val TAG = "$APP_TAG-Validations"
 
 object Validations {
 
-    fun String.notEmptyString(): Validated<ValidationError, String> =
+    fun String.mandatory(): Validated<ValidationError, String> =
             when {
                 this.isNotEmpty() -> this.valid()
-                else -> ValidationError.EmptyString.invalid()
+                else -> ValidationError.MandatoryField.invalid()
             }
 
     fun String.maxLength(maxLength: Int): Validated<ValidationError, String> =
@@ -36,9 +38,22 @@ object Validations {
                 else -> ValidationError.MaxLength.invalid()
             }
 
+    fun String.mandatoryDate(): Validated<ValidationError, LocalDate> =
+            when {
+                this.isEmpty() -> ValidationError.MandatoryField.invalid()
+                else -> this.toLocalDate()
+                        .fold(
+                                { it: Throwable ->
+                                    Log.d(TAG, "Error validating $this", it)
+                                    return@fold ValidationError.InvalidDate.invalid<ValidationError, LocalDate>()
+                                },
+                                { it -> it.valid() }
+                        )
+            }
+
     fun String.mandatoryNumber(): Validated<ValidationError, Int> =
             when {
-                this.isEmpty() -> ValidationError.EmptyString.invalid()
+                this.isEmpty() -> ValidationError.MandatoryField.invalid()
                 else -> this.toNumber()
                         .fold(
                                 { it: Throwable ->

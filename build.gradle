@@ -4,7 +4,7 @@ buildscript {
 
     ext {
         compileSdkVersion = 28
-        minSdkVersion = 15
+        minSdkVersion = 26
         targetSdkVersion = 28
 
         arrowVersion = "0.8.0"
