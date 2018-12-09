@@ -1,13 +1,13 @@
 package com.jdemolitions.openledger.infrastructure
 
 import arrow.core.Try
-import com.jdemolitions.openledger.DATE_FORMATTER
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 object StringExtension {
     fun String.toNumber(): Try<Int> = Try { this.toInt() }
 
-    fun String.toLocalDate(): Try<LocalDate> = Try {
-        LocalDate.parse(this, DATE_FORMATTER)
+    fun String.toLocalDate(dateFormatter: DateTimeFormatter): Try<LocalDate> = Try {
+        LocalDate.parse(this, dateFormatter)
     }
 }

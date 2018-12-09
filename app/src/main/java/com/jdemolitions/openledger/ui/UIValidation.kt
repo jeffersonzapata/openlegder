@@ -8,6 +8,7 @@ import com.jdemolitions.openledger.APP_TAG
 import com.jdemolitions.openledger.infrastructure.StringExtension.toNumber
 import com.jdemolitions.openledger.infrastructure.StringExtension.toLocalDate
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 sealed class FieldError {
     data class Amount(val value: ValidationError) : FieldError()
@@ -38,10 +39,10 @@ object Validations {
                 else -> ValidationError.MaxLength.invalid()
             }
 
-    fun String.mandatoryDate(): Validated<ValidationError, LocalDate> =
+    fun String.mandatoryDate(dateFormatter: DateTimeFormatter): Validated<ValidationError, LocalDate> =
             when {
                 this.isEmpty() -> ValidationError.MandatoryField.invalid()
-                else -> this.toLocalDate()
+                else -> this.toLocalDate(dateFormatter)
                         .fold(
                                 { it: Throwable ->
                                     Log.d(TAG, "Error validating $this", it)

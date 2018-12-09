@@ -6,6 +6,7 @@ import arrow.data.fix
 import arrow.data.nel
 import arrow.instances.nonemptylist.semigroup.semigroup
 import arrow.instances.validated.applicative.applicative
+import com.jdemolitions.openledger.DATE_FORMATTER
 import com.jdemolitions.openledger.ui.FieldError
 import com.jdemolitions.openledger.ui.Validations.maxLength
 import com.jdemolitions.openledger.ui.Validations.mandatoryNumber
@@ -21,7 +22,7 @@ data class Expense(val id: String, val amount: Long, val date: LocalDate, val de
                     .applicative<Nel<FieldError>>(Nel.semigroup())
                     .map(
                             amount.mandatoryNumber().leftMap { FieldError.Amount(it).nel() },
-                            date.mandatoryDate().leftMap { FieldError.Date(it).nel() },
+                            date.mandatoryDate(DATE_FORMATTER).leftMap { FieldError.Date(it).nel() },
                             description.maxLength(20).leftMap { FieldError.Description(it).nel() }
                     ) { Expense(randomUUID().toString(), it.a.toLong(), it.b, it.c) }
                     .fix()
