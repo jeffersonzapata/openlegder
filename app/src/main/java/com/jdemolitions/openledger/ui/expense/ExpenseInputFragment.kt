@@ -1,5 +1,6 @@
 package com.jdemolitions.openledger.ui.expense
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,9 +15,12 @@ import arrow.data.NonEmptyList
 import com.jdemolitions.openledger.APP_TAG
 import com.jdemolitions.openledger.OpenLedgerRepository
 import com.jdemolitions.openledger.databinding.ExpenseInputFragmentBinding
-import com.jdemolitions.openledger.infrastructure.hideKeyboard
-import com.jdemolitions.openledger.infrastructure.transformValidationError
+import com.jdemolitions.openledger.DATE_FORMATTER
+import com.jdemolitions.openledger.infrastructure.ViewExtension.hideKeyboard
+import com.jdemolitions.openledger.infrastructure.FragmentExtension.transformValidationError
+import com.jdemolitions.openledger.infrastructure.FragmentExtension.createDatePicker
 import com.jdemolitions.openledger.ui.FieldError
+import java.time.LocalDate
 
 val TAG = "$APP_TAG-ExpenseInputFragment"
 
@@ -27,6 +31,18 @@ class ExpenseInputFragment : Fragment() {
         val binding: ExpenseInputFragmentBinding = ExpenseInputFragmentBinding.inflate(inflater, container, false)
         val viewModel: ExpenseInputViewModel = ViewModelProviders.of(this).get(ExpenseInputViewModel::class.java)
         val repo: OpenLedgerRepository = OpenLedgerRepository.getInstance(requireContext())
+
+        val datePicker: DatePickerDialog = createDatePicker(
+                LocalDate.now()
+        ) { dateSettled ->
+            binding.dateEditText.setText(dateSettled.format(DATE_FORMATTER))
+            binding.descriptionEditText.requestFocus()
+        }
+
+        binding.dateEditText.setOnClickListener { view: View? ->
+            Log.d(TAG, "click on date edit text")
+            datePicker.show()
+        }
 
         binding.addExpenseButton.setOnClickListener {
             Log.d(TAG, "validating inputs")
